@@ -118,14 +118,34 @@ student2.rate_lecture(lecturer2, 'Python', 8)
 
 
 
-print(student1)
-print()
-print(student2)
-print()
-print(lecturer1)
-print()
-print(lecturer2)
-print()
-print(reviewer1)
-print()
-print(reviewer2)
+# Средняя оценка студентов по курсу
+def average_student_grade_by_course(students, course):
+    total = 0
+    count = 0
+    for student in students:
+        if course in student.grades:
+            total += sum(student.grades[course])
+            count += len(student.grades[course])
+    return total / count if count > 0 else 0
+
+
+# Средняя оценка лекторов по курсу
+def average_lecturer_grade_by_course(lecturers, course):
+    total = 0
+    count = 0
+    for lecturer in lecturers:
+        if course in lecturer.grades:
+            total += sum(lecturer.grades[course])
+            count += len(lecturer.grades[course])
+    return total / count if count > 0 else 0
+
+
+# --- Проверка ---
+students_list = [student1, student2]
+lecturers_list = [lecturer1, lecturer2]
+
+print(f"Средняя оценка студентов по Python: "
+      f"{average_student_grade_by_course(students_list, 'Python'):.1f}")
+
+print(f"Средняя оценка лекторов по Python: "
+      f"{average_lecturer_grade_by_course(lecturers_list, 'Python'):.1f}")
